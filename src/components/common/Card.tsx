@@ -50,7 +50,6 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: "#FFFFFF",
     borderRadius: 12,
-    overflow: "hidden", // 자식 요소가 카드 경계를 넘지 않도록
   },
 
   // 그림자 효과 스타일

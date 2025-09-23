@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { CommonHeader } from "../components/common";
+import { FONTS, FONT_SIZES, FONT_WEIGHTS } from "../constants";
 
 interface SecondScreenProps {
   navigation: any;
@@ -10,8 +10,6 @@ interface SecondScreenProps {
 export default function SecondScreen({ navigation }: SecondScreenProps) {
   return (
     <View style={styles.container}>
-      {/* 공통 헤더 */}
-      <CommonHeader navigation={navigation} />
       <View style={styles.content}>
         <Text style={styles.title}>두 번째 페이지</Text>
         <Text style={styles.subtitle}>두 번째 페이지입니다</Text>
@@ -40,13 +38,15 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   title: {
-    fontSize: 24,
-    fontWeight: "bold",
+    fontSize: FONT_SIZES["2xl"],
+    fontWeight: "700",
+    fontFamily: FONTS.bold,
     color: "#333",
     marginBottom: 10,
   },
   subtitle: {
-    fontSize: 16,
+    fontSize: FONT_SIZES.base,
+    fontFamily: FONTS.regular,
     color: "#666",
     marginBottom: 30,
     textAlign: "center",
@@ -67,7 +67,8 @@ const styles = StyleSheet.create({
   },
   button_text: {
     color: "white",
-    fontSize: 16,
+    fontSize: FONT_SIZES.base,
     fontWeight: "600",
+    fontFamily: FONTS.semiBold,
   },
 });

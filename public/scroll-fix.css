@@ -1,0 +1,27 @@
+/* React Native Web 스크롤 수정 CSS */
+html,
+body {
+  height: 100%;
+  overflow: auto;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  height: 100vh;
+  overflow: auto;
+}
+
+/* ScrollView 스타일 수정 */
+[data-testid="scroll-view"] {
+  height: 100vh !important;
+  overflow: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+/* 웹에서 스크롤 강제 활성화 */
+.react-native-scroll-view {
+  height: 100vh !important;
+  overflow: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+}

@@ -208,7 +208,7 @@ export const MIN_HEIGHTS = {
 
 // 최대 높이 상수들
 export const MAX_HEIGHTS = {
-  screen: "100%",
+  // screen: "100%",
   modal: "90%",
   dropdown: 300,
   list: 400,

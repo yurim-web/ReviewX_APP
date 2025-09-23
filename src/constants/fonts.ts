@@ -3,20 +3,48 @@
  * 프리텐다드 폰트 패밀리를 사용합니다.
  */
 
+import { Platform } from "react-native";
+
 // 🎨 프리텐다드 폰트 패밀리
+// App.tsx의 useFonts에서 정의한 이름과 정확히 일치해야 함
 export const FONTS = {
-  // 기본 폰트
+  // 프리텐다드 폰트 패밀리
   regular: "Pretendard-Regular",
   medium: "Pretendard-Medium",
   semiBold: "Pretendard-SemiBold",
   bold: "Pretendard-Bold",
+  light: "Pretendard-Light",
+  extraLight: "Pretendard-ExtraLight",
+  extraBold: "Pretendard-ExtraBold",
+  black: "Pretendard-Black",
+  thin: "Pretendard-Thin",
 
   // 대체 폰트 (프리텐다드가 없을 경우)
   fallback: {
-    regular: "System",
-    medium: "System",
-    semiBold: "System",
-    bold: "System",
+    regular:
+      Platform.select({
+        ios: "System",
+        android: "Roboto",
+        default: "System",
+      }) || "System",
+    medium:
+      Platform.select({
+        ios: "System",
+        android: "Roboto",
+        default: "System",
+      }) || "System",
+    semiBold:
+      Platform.select({
+        ios: "System",
+        android: "Roboto",
+        default: "System",
+      }) || "System",
+    bold:
+      Platform.select({
+        ios: "System",
+        android: "Roboto",
+        default: "System",
+      }) || "System",
   },
 } as const;
 

@@ -3,6 +3,7 @@ import styled from "styled-components/native";
 import { LinearGradient } from "expo-linear-gradient";
 import { TouchableOpacity, Text } from "react-native";
 import { CommonHeader } from "../common";
+import { FONTS, FONT_SIZES, FONT_WEIGHTS } from "../../constants";
 
 // 🎨 CSS처럼 사용하는 styled-components 예제들
 
@@ -30,10 +31,10 @@ const Card = styled.View`
 
 // 3. 제목 스타일
 const Title = styled.Text`
-  font-size: 24px;
-  font-weight: bold;
+  font-size: ${FONT_SIZES["2xl"]}px;
+  font-weight: 700;
+  font-family: ${FONTS.bold};
   color: #333;
-
   margin-bottom: 16px;
 `;
 
@@ -49,8 +50,9 @@ const Button = styled.TouchableOpacity`
 // 5. 버튼 텍스트
 const ButtonText = styled.Text`
   color: white;
-  font-size: 16px;
+  font-size: ${FONT_SIZES.base}px;
   font-weight: 600;
+  font-family: ${FONTS.semiBold};
 `;
 
 // 6. 입력 필드 스타일
@@ -58,7 +60,8 @@ const Input = styled.TextInput`
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 12px;
-  font-size: 16px;
+  font-size: ${FONT_SIZES.base}px;
+  font-family: ${FONTS.regular};
   margin: 8px 0;
   background-color: white;
 `;
@@ -89,8 +92,9 @@ const HoverButton = styled.TouchableOpacity`
 
 const HoverButtonText = styled.Text`
   color: white;
-  font-size: 16px;
+  font-size: ${FONT_SIZES.base}px;
   font-weight: 600;
+  font-family: ${FONTS.semiBold};
 `;
 
 // 9. 조건부 스타일링 (props 사용)
@@ -130,7 +134,8 @@ const StatusText = styled.Text<StatusProps>`
     }
   }};
   font-weight: 600;
-  font-size: 14px;
+  font-size: ${FONT_SIZES.sm}px;
+  font-family: ${FONTS.semiBold};
 `;
 
 // 10. 애니메이션 효과
@@ -148,7 +153,6 @@ const StyledExample: React.FC = ({ navigation }: any) => {
   return (
     <Container>
       {/* 공통 헤더 */}
-      <CommonHeader navigation={navigation} />
       <ContentContainer>
         <Title>🎨 CSS처럼 사용하는 React Native</Title>
 
