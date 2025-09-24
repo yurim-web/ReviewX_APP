@@ -15,8 +15,6 @@ export interface CampaignData {
     current: number; // 현재 모집된 인원수
     total: number; // 전체 모집 인원수
   };
-  schedule: string; // 스케줄 정보
-  dayCount: string; // 남은 일수 (예: "마감임박", "3일")
   detailedSchedule: {
     applicationStart: string; // 신청 시작일시
     applicationEnd: string; // 신청 마감일
@@ -24,13 +22,8 @@ export interface CampaignData {
     purchasePeriod: string; // 구매 기간
   };
   campaign_detail_image: string | any; // 캠페인 상세 이미지 (URL 문자열 또는 require 객체)
-  productName: string; // 제품명
   productDescription: string; // 제품 설명
   keywords: string[]; // 키워드 배열
-  overlay?: {
-    date: string; // 오버레이 날짜 (예: "1/25 (화) 10:00")
-    status: string; // 오버레이 상태 (예: "모집 오픈", "모집 마감")
-  };
 }
 
 /**
@@ -51,19 +44,16 @@ export const campaigns: CampaignData[] = [
       current: 106,
       total: 10,
     },
-    schedule: "",
-    dayCount: "",
     detailedSchedule: {
       applicationStart: "2025-01-19",
       applicationEnd: "2025-02-09",
       announcement: "2025-02-11",
       purchasePeriod: "2025-02-11 ~ 2025-02-14",
     },
-    campaign_detail_image: require("../../assets/images/exdataimg/eximg_2.png"),
-    productName: "엔긴 엔트리 종아리마사지기",
+    campaign_detail_image: require("../../assets/images/exdataimg/exdetail_1.png"),
     productDescription:
       "내셔널지오그래픽 모바일 러닝벨트 M(블랙), S(랜덤) 총 2개",
-    keywords: ["종아리마사지기", "엔긴", "엔트리"],
+
     overlay: {
       date: "1/25 (화) 10:00",
       status: "모집 오픈",

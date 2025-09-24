@@ -1,6 +1,6 @@
 // 캠페인 상세 페이지
 // 박스 클릭하면 나오는 상세 페이지
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -8,8 +8,8 @@ import {
   ScrollView,
   SafeAreaView,
   TouchableOpacity,
-  TextInput,
 } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 import { StackScreenProps } from "@react-navigation/stack";
 
 type RootStackParamList = {
@@ -22,11 +22,8 @@ type RootStackParamList = {
 import { SubHeader } from "../components/common";
 import { campaign_detail_screen_styles } from "../styles/campaign_detail/campaign_detail_screen_styles";
 import {
-  guidelines,
   detailed_guidelines,
   additional_guidelines,
-  product_constants,
-  campaign_constants,
 } from "../data/campaign_detail_data";
 import { CampaignData } from "../data/campaign_data";
 
@@ -79,6 +76,7 @@ export default function CampaignDetailScreen({
   route,
 }: CampaignDetailScreenProps) {
   const { campaign } = route.params;
+  const [isImageExpanded, setIsImageExpanded] = useState(false);
 
   return (
     <SafeAreaView style={campaign_detail_screen_styles.container}>
@@ -154,7 +152,7 @@ export default function CampaignDetailScreen({
           >
             <View style={campaign_detail_screen_styles.recruitment_info_row}>
               <Text style={campaign_detail_screen_styles.recruitment_label}>
-                {campaign_constants.recruitment_label}
+                모집 인원
               </Text>
               <View
                 style={campaign_detail_screen_styles.recruitment_info_container}
@@ -176,7 +174,7 @@ export default function CampaignDetailScreen({
             {/* 모집기간 */}
             <View style={campaign_detail_screen_styles.recruitment_info_row}>
               <Text style={campaign_detail_screen_styles.recruitment_label}>
-                {campaign_constants.recruitment_period_label}
+                모집 기간
               </Text>
               <Text
                 style={campaign_detail_screen_styles.recruitment_value_regular}
@@ -189,7 +187,7 @@ export default function CampaignDetailScreen({
             {/* 당첨발표 */}
             <View style={campaign_detail_screen_styles.recruitment_info_row}>
               <Text style={campaign_detail_screen_styles.recruitment_label}>
-                {campaign_constants.announcement_label}
+                당첨 발표
               </Text>
               <Text
                 style={campaign_detail_screen_styles.recruitment_value_regular}
@@ -201,7 +199,7 @@ export default function CampaignDetailScreen({
             {/* 구매기간 */}
             <View style={campaign_detail_screen_styles.recruitment_info_row}>
               <Text style={campaign_detail_screen_styles.recruitment_label}>
-                {campaign_constants.purchase_period_label}
+                구매 기간
               </Text>
               <Text
                 style={campaign_detail_screen_styles.recruitment_value_regular}
@@ -209,6 +207,14 @@ export default function CampaignDetailScreen({
                 {campaign.detailedSchedule.purchasePeriod}
               </Text>
             </View>
+
+            {/* 그라데이션 오버레이 */}
+            <LinearGradient
+              colors={["rgba(255, 255, 255, 0.2)", "#ffffff"]}
+              locations={[0, 1.5]}
+              style={campaign_detail_screen_styles.gradient_overlay}
+              pointerEvents="none"
+            />
           </View>
 
           {/* 신청하기 버튼 */}
@@ -217,7 +223,7 @@ export default function CampaignDetailScreen({
             activeOpacity={0.8}
           >
             <Text style={campaign_detail_screen_styles.apply_button_text}>
-              {campaign_constants.apply_button_text}
+              캠페인 신청하기
             </Text>
           </TouchableOpacity>
         </View>
@@ -239,100 +245,199 @@ export default function CampaignDetailScreen({
                   ? { uri: campaign.campaign_detail_image }
                   : campaign.campaign_detail_image
               }
-              style={campaign_detail_screen_styles.product_image}
+              style={[
+                campaign_detail_screen_styles.product_image,
+                isImageExpanded &&
+                  campaign_detail_screen_styles.product_image_expanded,
+              ]}
             />
-            <TouchableOpacity
-              style={campaign_detail_screen_styles.expand_button}
-            >
-              <Text style={campaign_detail_screen_styles.expand_button_text}>
-                {product_constants.expand_button_text}
-              </Text>
-            </TouchableOpacity>
+            {!isImageExpanded && (
+              <TouchableOpacity
+                style={campaign_detail_screen_styles.expand_button_overlay}
+                onPress={() => setIsImageExpanded(!isImageExpanded)}
+              >
+                <Text style={campaign_detail_screen_styles.expand_button_text}>
+                  이미지 펼쳐보기
+                </Text>
+              </TouchableOpacity>
+            )}
+            {isImageExpanded && (
+              <TouchableOpacity
+                style={campaign_detail_screen_styles.expand_button}
+                onPress={() => setIsImageExpanded(!isImageExpanded)}
+              >
+                <Text style={campaign_detail_screen_styles.expand_button_text}>
+                  이미지 접기
+                </Text>
+              </TouchableOpacity>
+            )}
           </View>
+        </View>
 
-          <View style={campaign_detail_screen_styles.keyword_input_container}>
-            <Text style={campaign_detail_screen_styles.keyword_label}>
-              {campaign_constants.keyword_copy_text}
+        {/* 상세정보 글 부분 시작 */}
+        <View style={campaign_detail_screen_styles.provided_details_container}>
+          {/* 제공내역 영역 */}
+          <View style={campaign_detail_screen_styles.info_container}>
+            <Text style={campaign_detail_screen_styles.info_title}>
+              제공내역
             </Text>
-            <TextInput
-              style={campaign_detail_screen_styles.keyword_input}
-              placeholder={product_constants.keyword_input_placeholder}
-              placeholderTextColor="#999"
-            />
+            <Text style={campaign_detail_screen_styles.info_value}>
+              {campaign.productDescription}
+            </Text>
           </View>
-        </View>
 
-        {/* 안내 사항 */}
-        <View style={campaign_detail_screen_styles.guidelines_container}>
-          <Text style={campaign_detail_screen_styles.guidelines_title}>
-            {campaign_constants.guidelines_title}
-          </Text>
-
-          {/* 아이콘 목록 */}
-          <View
-            style={campaign_detail_screen_styles.guidelines_icons_container}
-          >
-            {guidelines.map((item, index) => (
-              <View
-                key={index}
-                style={campaign_detail_screen_styles.guideline_item}
+          {/* 키워드 영역 */}
+          <View style={campaign_detail_screen_styles.info_container}>
+            <View style={campaign_detail_screen_styles.keyword_header}>
+              <Text style={campaign_detail_screen_styles.info_title}>
+                키워드
+              </Text>
+              <TouchableOpacity
+                style={campaign_detail_screen_styles.copy_button}
               >
-                <Text style={campaign_detail_screen_styles.guideline_icon}>
-                  📝
+                <Text style={campaign_detail_screen_styles.copy_button_text}>
+                  복사
                 </Text>
+              </TouchableOpacity>
+            </View>
+            <Text style={campaign_detail_screen_styles.info_value}>
+              {campaign.keywords && campaign.keywords.length > 0
+                ? campaign.keywords.join(", ")
+                : "자유롭게 입력하세요."}
+            </Text>
+          </View>
+
+          {/* 안내 사항 */}
+          <View style={campaign_detail_screen_styles.info_container}>
+            <Text style={campaign_detail_screen_styles.info_title}>
+              안내사항
+            </Text>
+
+            {/* 아이콘 목록 */}
+            <View
+              style={campaign_detail_screen_styles.guidelines_icons_container}
+            >
+              <View style={campaign_detail_screen_styles.guideline_item}>
+                <View
+                  style={campaign_detail_screen_styles.guideline_icon_container}
+                >
+                  <Image
+                    source={require("../../assets/images/info_icon/keyword_icon.svg")}
+                    style={campaign_detail_screen_styles.guideline_icon}
+                  />
+                </View>
                 <Text style={campaign_detail_screen_styles.guideline_text}>
-                  {item}
+                  키워드 삽입
                 </Text>
               </View>
-            ))}
+              <View style={campaign_detail_screen_styles.guideline_item}>
+                <View
+                  style={campaign_detail_screen_styles.guideline_icon_container}
+                >
+                  <Image
+                    source={require("../../assets/images/info_icon/product_link_icon.svg")}
+                    style={campaign_detail_screen_styles.guideline_icon}
+                  />
+                </View>
+                <Text style={campaign_detail_screen_styles.guideline_text}>
+                  제품 링크{"\n"}삽입
+                </Text>
+              </View>
+              <View style={campaign_detail_screen_styles.guideline_item}>
+                <View
+                  style={campaign_detail_screen_styles.guideline_icon_container}
+                >
+                  <Image
+                    source={require("../../assets/images/info_icon/text_icon.svg")}
+                    style={campaign_detail_screen_styles.guideline_icon}
+                  />
+                </View>
+                <Text style={campaign_detail_screen_styles.guideline_text}>
+                  1,500자{"\n"}이상
+                </Text>
+              </View>
+              <View style={campaign_detail_screen_styles.guideline_item}>
+                <View
+                  style={campaign_detail_screen_styles.guideline_icon_container}
+                >
+                  <Image
+                    source={require("../../assets/images/info_icon/photo_icon.svg")}
+                    style={campaign_detail_screen_styles.guideline_icon}
+                  />
+                </View>
+                <Text style={campaign_detail_screen_styles.guideline_text}>
+                  10장 이상
+                </Text>
+              </View>
+              <View style={campaign_detail_screen_styles.guideline_item}>
+                <View
+                  style={campaign_detail_screen_styles.guideline_icon_container}
+                >
+                  <Image
+                    source={require("../../assets/images/info_icon/video_icon.svg")}
+                    style={campaign_detail_screen_styles.guideline_icon}
+                  />
+                </View>
+                <Text style={campaign_detail_screen_styles.guideline_text}>
+                  1개 이상
+                </Text>
+              </View>
+            </View>
           </View>
-
           {/* 상세 가이드라인 */}
-          <View style={campaign_detail_screen_styles.guidelines_list_container}>
-            {detailed_guidelines.map((guideline, index) => (
-              <View
-                key={index}
-                style={campaign_detail_screen_styles.guideline_list_item}
-              >
-                <Text style={campaign_detail_screen_styles.guideline_bullet}>
-                  •
-                </Text>
-                <Text style={campaign_detail_screen_styles.guideline_list_text}>
-                  {guideline}
-                </Text>
-              </View>
-            ))}
+          <View style={campaign_detail_screen_styles.info_container}>
+            <Text style={campaign_detail_screen_styles.info_value}>
+              {detailed_guidelines.map((guideline) => guideline).join("\n")}
+            </Text>
           </View>
-        </View>
 
-        {/* 추가 안내 사항 */}
-        <View
-          style={campaign_detail_screen_styles.additional_guidelines_container}
-        >
-          <Text
-            style={campaign_detail_screen_styles.additional_guidelines_title}
-          >
-            {campaign_constants.additional_guidelines_title}
-          </Text>
+          {/* 추가 안내 사항 영역 */}
+          <View style={campaign_detail_screen_styles.info_container}>
+            <Text style={campaign_detail_screen_styles.info_title}>
+              추가 안내 사항
+            </Text>
 
-          <View
-            style={
-              campaign_detail_screen_styles.additional_guidelines_list_container
-            }
-          >
-            {additional_guidelines.map((guideline, index) => (
-              <View
-                key={index}
-                style={campaign_detail_screen_styles.guideline_list_item}
-              >
-                <Text style={campaign_detail_screen_styles.guideline_bullet}>
-                  •
-                </Text>
-                <Text style={campaign_detail_screen_styles.guideline_list_text}>
-                  {guideline}
-                </Text>
-              </View>
-            ))}
+            {additional_guidelines.map((guideline, index) => {
+              if (typeof guideline === "string") {
+                return (
+                  <Text
+                    key={index}
+                    style={campaign_detail_screen_styles.add_value_text}
+                  >
+                    {guideline}
+                  </Text>
+                );
+              } else if (guideline.type === "complex") {
+                return (
+                  <Text
+                    key={index}
+                    style={campaign_detail_screen_styles.add_value_text}
+                  >
+                    {guideline.parts.map((part, partIndex) => {
+                      if (typeof part === "string") {
+                        return part;
+                      } else {
+                        return (
+                          <Text
+                            key={partIndex}
+                            style={[
+                              campaign_detail_screen_styles.add_value_text,
+                              {
+                                textDecorationLine: "underline",
+                                fontWeight: "600",
+                              },
+                            ]}
+                          >
+                            {part.text}
+                          </Text>
+                        );
+                      }
+                    })}
+                  </Text>
+                );
+              }
+              return null;
+            })}
           </View>
         </View>
       </ScrollView>
