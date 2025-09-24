@@ -27,6 +27,11 @@ export const top_navigation_styles = StyleSheet.create({
     alignItems: "center",
   },
 
+  // 활성화된 네비게이션 탭
+  nav_tab_active: {
+    // 활성화된 탭의 추가 스타일 (필요시)
+  },
+
   // 네비게이션 텍스트
   nav_text: {
     fontFamily: FONTS.medium,

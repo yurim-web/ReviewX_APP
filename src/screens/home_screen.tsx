@@ -14,8 +14,6 @@ interface HomeScreenProps {
 export default function HomeScreen({ navigation }: HomeScreenProps) {
   // 탭 클릭 핸들러
   const handleTabPress = (tabId: string) => {
-    console.log(`탭 클릭: ${tabId}`);
-
     // 탭별 화면 전환 로직
     switch (tabId) {
       case "home":
@@ -25,20 +23,16 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
         navigation.navigate("Delivery");
         break;
       case "visit":
-        // TODO: 방문형 화면 구현
-        console.log("방문형 화면으로 이동 예정");
+        navigation.navigate("Visit");
         break;
       case "review":
-        // TODO: 구매평 화면 구현
-        console.log("구매평 화면으로 이동 예정");
+        navigation.navigate("Review");
         break;
       case "experience":
-        // TODO: 체험단 화면 구현
-        console.log("체험단 화면으로 이동 예정");
+        navigation.navigate("Experience");
         break;
       case "press":
-        // TODO: 기자단 화면 구현
-        console.log("기자단 화면으로 이동 예정");
+        navigation.navigate("Press");
         break;
       default:
         break;

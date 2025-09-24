@@ -6,14 +6,7 @@
  * import { Button, Card, Input, Loading } from '../components/common';
  */
 
-// 버튼 컴포넌트 export
-export { default as Button } from "./Button";
-
-// 카드 컴포넌트 export
-export { default as Card } from "./Card";
-
-// 입력 필드 컴포넌트 export
-export { default as Input } from "./Input";
+// (미사용) Button/Card/Input export 제거
 
 // 로딩 컴포넌트 export
 export { default as Loading } from "./Loading";
@@ -25,7 +18,7 @@ export { default as CommonHeader } from "./fragments/CommonHeader";
 export { default as SubHeader } from "./fragments/SubHeader";
 
 // 상단 네비게이션 컴포넌트 export
-export { default as TopNavigation } from "./TopNavigation";
+export { default as TopNavigation } from "./fragments/TopNavigation";
 
 // 가이드 아이콘 컴포넌트 export
 export { default as GuideIcon } from "../../../assets/images/header/GuideIcon";

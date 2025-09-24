@@ -1,7 +1,7 @@
 // React Native에서 필요한 컴포넌트들을 가져옵니다
 import React from "react"; // React 라이브러리 (필수)
 import { View, Text, ScrollView, TouchableOpacity } from "react-native"; // React Native 기본 컴포넌트들
-import { top_navigation_styles as styles } from "../../styles/navigation/top_navigation_styles"; // 네비게이션 전용 스타일
+import { top_navigation_styles as styles } from "../../../styles/navigation/top_navigation_styles"; // 네비게이션 전용 스타일
 
 // 상단 네비게이션 컴포넌트의 props 타입 정의
 interface TopNavigationProps {

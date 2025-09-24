@@ -30,14 +30,11 @@ const CommonHeader: React.FC<CommonHeaderProps> = ({ navigation }) => {
 
       {/* 오른쪽 아이콘 */}
       <View style={styles.header_icons}>
-        <TouchableOpacity
-          style={styles.icon_button}
-          onPress={() => navigation.navigate("StyledExample")}
-        >
+        <TouchableOpacity>
           <GuideIcon width={24} height={24} color="white" />
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.icon_button}>
+        <TouchableOpacity>
           <MyIcon width={24} height={24} color="white" />
         </TouchableOpacity>
       </View>

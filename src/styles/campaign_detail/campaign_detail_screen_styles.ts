@@ -130,7 +130,6 @@ export const campaign_detail_screen_styles = StyleSheet.create({
   main_image: {
     width: "100%",
     height: "100%",
-    resizeMode: "cover",
     borderRadius: 4,
   },
 
@@ -253,7 +252,6 @@ export const campaign_detail_screen_styles = StyleSheet.create({
   product_image: {
     width: "100%",
     height: 300,
-    resizeMode: "cover",
   },
 
   // 제품 이미지 (확장됨)
@@ -269,13 +267,7 @@ export const campaign_detail_screen_styles = StyleSheet.create({
     borderRadius: 30,
     alignSelf: "center",
     marginTop: 12,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
-    shadowOpacity: 0.05,
-    shadowRadius: 20,
+    boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.05)",
     elevation: 3,
   },
   expand_button_overlay: {
@@ -287,13 +279,7 @@ export const campaign_detail_screen_styles = StyleSheet.create({
     paddingHorizontal: 27,
     paddingVertical: 14,
     borderRadius: 30,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
-    shadowOpacity: 0.05,
-    shadowRadius: 20,
+    boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.05)",
     elevation: 3,
   },
   expand_button_text: {

@@ -11,12 +11,14 @@ import { TopNavigation, CommonHeader } from "../components/common"; // 상단 �
 import { home_screen_styles as styles } from "../styles/home/home_screen_styles"; // 홈 화면 스타일 재사용
 
 // TypeScript를 위한 인터페이스 정의 (화면에 전달되는 데이터의 타입을 정의)
-interface DeliveryScreenProps {
+interface ExperienceScreenProps {
   navigation: any; // navigation 객체 (다른 화면으로 이동할 때 사용)
 }
 
-// 배송형 화면 컴포넌트 정의
-export default function DeliveryScreen({ navigation }: DeliveryScreenProps) {
+// 체험단 화면 컴포넌트 정의
+export default function ExperienceScreen({
+  navigation,
+}: ExperienceScreenProps) {
   // 탭 클릭 핸들러
   const handleTabPress = (tabId: string) => {
     // 탭별 화면 전환 로직
@@ -25,7 +27,7 @@ export default function DeliveryScreen({ navigation }: DeliveryScreenProps) {
         navigation.navigate("Home");
         break;
       case "delivery":
-        // 현재 화면이므로 아무것도 하지 않음
+        navigation.navigate("Delivery");
         break;
       case "visit":
         navigation.navigate("Visit");
@@ -34,7 +36,7 @@ export default function DeliveryScreen({ navigation }: DeliveryScreenProps) {
         navigation.navigate("Review");
         break;
       case "experience":
-        navigation.navigate("Experience");
+        // 현재 화면이므로 아무것도 하지 않음
         break;
       case "press":
         navigation.navigate("Press");
@@ -51,15 +53,15 @@ export default function DeliveryScreen({ navigation }: DeliveryScreenProps) {
       <CommonHeader navigation={navigation} />
 
       {/* ===== 상단 네비게이션 탭 영역 ===== */}
-      <TopNavigation activeTabId="delivery" onTabPress={handleTabPress} />
+      <TopNavigation activeTabId="experience" onTabPress={handleTabPress} />
 
       {/* ===== 메인 콘텐츠 영역 (세로 스크롤 가능) ===== */}
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
-        {/* ===== 배송형 페이지 제목 ===== */}
+        {/* ===== 체험단 페이지 제목 ===== */}
         <View>
-          <Text>배송형 캠페인</Text>
+          <Text>체험단 캠페인</Text>
           <Text>
-            배송형 캠페인 페이지입니다.{"\n"}곧 내용이 추가 될 예정입니다!
+            체험단 캠페인 페이지입니다.{"\n"}곧 내용이 추가 될 예정입니다!
           </Text>
         </View>
       </ScrollView>

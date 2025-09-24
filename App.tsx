@@ -6,10 +6,12 @@ import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { Text } from "react-native";
 import HomeScreen from "./src/screens/home_screen";
-import SecondScreen from "./src/screens/second_screen";
 import DeliveryScreen from "./src/screens/delivery_screen";
-import CampaignDetailScreen from "./src/screens/campaign_detail_screen";
-import { StyledExample } from "./src/components/styled";
+import VisitScreen from "./src/screens/visit_screen";
+import ReviewScreen from "./src/screens/review_screen";
+import ExperienceScreen from "./src/screens/experience_screen";
+import PressScreen from "./src/screens/press_screen";
+import CampaignDetailScreen from "./src/screens/detail/campaign_detail_screen";
 import { CommonHeader } from "./src/components/common";
 import { CampaignData } from "./src/data/campaign_data";
 import "./App.css";
@@ -17,9 +19,11 @@ import "./App.css";
 // 타입 정의
 type RootStackParamList = {
   Home: undefined;
-  StyledExample: undefined;
-  Second: undefined;
   Delivery: undefined;
+  Visit: undefined;
+  Review: undefined;
+  Experience: undefined;
+  Press: undefined;
   CampaignDetail: { campaign: CampaignData };
 };
 
@@ -79,24 +83,38 @@ export default function App() {
           }}
         />
         <Stack.Screen
-          name="StyledExample"
-          component={StyledExample}
-          options={{
-            title: "CSS 예제",
-          }}
-        />
-        <Stack.Screen
-          name="Second"
-          component={SecondScreen}
-          options={{
-            title: "두 번째 페이지",
-          }}
-        />
-        <Stack.Screen
           name="Delivery"
           component={DeliveryScreen}
           options={{
             title: "배송형 캠페인",
+          }}
+        />
+        <Stack.Screen
+          name="Visit"
+          component={VisitScreen}
+          options={{
+            title: "방문형 캠페인",
+          }}
+        />
+        <Stack.Screen
+          name="Review"
+          component={ReviewScreen}
+          options={{
+            title: "구매평 캠페인",
+          }}
+        />
+        <Stack.Screen
+          name="Experience"
+          component={ExperienceScreen}
+          options={{
+            title: "체험단 캠페인",
+          }}
+        />
+        <Stack.Screen
+          name="Press"
+          component={PressScreen}
+          options={{
+            title: "기자단 캠페인",
           }}
         />
         <Stack.Screen
