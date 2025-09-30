@@ -55,6 +55,7 @@ export const campaigns: CampaignData[] = [
       "내셔널지오그래픽 모바일 러닝벨트 M(블랙), S(랜덤) 총 2개",
     keywords: ["고양이", "미용", "반려동물", "김포"],
   },
+
   {
     id: "2",
     title: "신제품 체험단 모집",
@@ -78,6 +79,7 @@ export const campaigns: CampaignData[] = [
     productDescription: "신제품 체험단 모집 제품",
     keywords: ["신제품", "체험단", "뷰티"],
   },
+
   {
     id: "3",
     title: "맛집 리뷰 작성 이벤트",
@@ -101,6 +103,7 @@ export const campaigns: CampaignData[] = [
     productDescription: "맛집 리뷰 작성 이벤트 제품",
     keywords: ["맛집", "리뷰", "이벤트"],
   },
+
   {
     id: "4",
     title: "새로운 브랜드 체험",
