@@ -33,3 +33,4 @@ const MyIcon: React.FC<MyIconProps> = ({
 };
 
 export default MyIcon;
+
